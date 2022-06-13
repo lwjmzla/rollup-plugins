@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	  <div id="app">
+	    <hello></hello>
+	  </div>
+	  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script> -->
+	  <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+	  <script src="./dist/my-lib-umd.js"></script>
+	  <script>
+	    // Vue.use(myLib)
+	    // new Vue({
+	    //   el: '#app'
+	    // })
+		const app = Vue.createApp({
+			data() {
+				return {
+					msg: 'haha'
+				}
+			},
+			created() {
+				console.log(this.msg)
+			},
+			// render() {
+			// 	console.log(this)
+			//     return Vue.h(
+			//       'div',
+			// 	  {},
+			//       this.msg  // 标签内容
+			//     )
+			// },
+		});
+		app.use(myLib)
+		app.mount('#app');
+	  </script>
+	</body>
+	
+</html>
