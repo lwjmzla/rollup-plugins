@@ -1,6 +1,6 @@
 import Test from './index.vue'
-function install(Vue) {
-  Vue.component(Test.name, Test)
+function install(app) {
+  app.component(Test.name, Test)
 }
 
 export default install

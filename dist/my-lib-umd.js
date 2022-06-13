@@ -54,8 +54,8 @@
   var css_248z$1 = "body{-ms-flex-pack:center;justify-content:center}";
   styleInject(css_248z$1);
 
-  function install$2(Vue) {
-    Vue.component(script$1.name, script$1);
+  function install$2(app) {
+    app.component(script$1.name, script$1);
   }
 
   var script = vue.defineComponent({
@@ -78,13 +78,13 @@
   script.render = render;
   script.__file = "src/packages/test/index.vue";
 
-  function install$1(Vue) {
-    Vue.component(script.name, script);
+  function install$1(app) {
+    app.component(script.name, script);
   }
 
-  function install(Vue) {
-    Vue.use(install$2);
-    Vue.use(install$1);
+  function install(app) {
+    app.use(install$2);
+    app.use(install$1);
   }
    //umd
 

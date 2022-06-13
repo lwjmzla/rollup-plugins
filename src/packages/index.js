@@ -1,8 +1,8 @@
 import Hello from "./hello/index.js"
 import Test from "./test/index.js"
-function install(Vue){
-  Vue.use(Hello)
-  Vue.use(Test)
+function install(app){
+  app.use(Hello)
+  app.use(Test)
 }
 
 export {    

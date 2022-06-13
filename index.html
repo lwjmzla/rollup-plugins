@@ -34,7 +34,7 @@
 			//     )
 			// },
 		});
-		app.use(myLib)
+		app.use(myLib.default || myLib)
 		app.mount('#app');
 	  </script>
 	</body>
