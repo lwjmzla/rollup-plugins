@@ -1,7 +1,7 @@
 const { babel } = require("@rollup/plugin-babel"); // es6解析
 // const json = require("@rollup/plugin-json"); // json解析
 const vuePlugin = require("rollup-plugin-vue"); // vue 解析
-//const typescript = require("rollup-plugin-typescript2"); // ts打包
+const typescript = require("rollup-plugin-typescript2"); // ts打包
 const postcss = require("rollup-plugin-postcss"); // css 打包
 const cssnano = require("cssnano");
 const autoprefixer = require("autoprefixer");  // 浏览器前缀
@@ -24,7 +24,7 @@ const globals = {
 // !rollup的external+globals  才等于  webpack的externals: { vue : 'Vue'}
 
 export default {
-  input: "./src/packages/index.js",
+  input: "./src/packages/index.ts",
   external,
   output: [
     {
@@ -45,11 +45,16 @@ export default {
   plugins: [
     // terser(), // 代码压缩
     // json(),
-    // typescript({ 
-    //   tsconfigOverride: override(type),
-    //   tsconfig: 'tsconfig.json',
-    //   useTsconfigDeclarationDir: true,
-    //  }),
+    typescript({ 
+      tsconfigOverride: {
+        compilerOptions: { 
+          declaration: true,
+          declarationDir: 'dist/type',
+        }
+      },
+      tsconfig: 'tsconfig.json',
+      useTsconfigDeclarationDir: true,
+    }),
     babel({
       exclude: "node_modules/**",
       //babelHelpers: "runtime",

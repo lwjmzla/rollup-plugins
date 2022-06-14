@@ -5,13 +5,34 @@
 })(this, (function (exports, vue) { 'use strict';
 
   var script$1 = vue.defineComponent({
-    name: 'hello',
-    setup() {
-      const msg =vue.ref('hello');
-      return {
-        msg
+      name: 'hello',
+      props: {
+          province: {
+              type: String,
+              default: ''
+          },
+          city: {
+              type: String,
+              default: ''
+          },
+          area: {
+              type: String,
+              default: ''
+          }
+      },
+      setup(props) {
+          const msg = vue.ref('hello');
+          const state = vue.reactive({
+              provinceVal: props.province,
+              cityVal: props.city,
+              areaVal: props.area,
+              provinceList: [],
+              cityList: [],
+              areaList: [],
+              totalData: [],
+          });
+          return Object.assign(Object.assign({}, vue.toRefs(state)), { msg });
       }
-    }
   });
 
   function render$1(_ctx, _cache, $props, $setup, $data, $options) {
@@ -54,8 +75,9 @@
   var css_248z$1 = "body{-ms-flex-pack:center;justify-content:center}";
   styleInject(css_248z$1);
 
+  // @ts-ignore
   function install$2(app) {
-    app.component(script$1.name, script$1);
+      app.component(script$1.name, script$1);
   }
 
   var script = vue.defineComponent({
@@ -78,15 +100,17 @@
   script.render = render;
   script.__file = "src/packages/test/index.vue";
 
+  // @ts-ignore
   function install$1(app) {
-    app.component(script.name, script);
+      app.component(script.name, script);
   }
 
+  const str = 'lwj';
+  console.log(str);
   function install(app) {
-    app.use(install$2);
-    app.use(install$1);
+      app.use(install$2);
+      app.use(install$1);
   }
-   //umd
 
   exports.Hello = install$2;
   exports.Test = install$1;
