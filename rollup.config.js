@@ -9,7 +9,7 @@ const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer'); // 浏览器前缀
 // const {terser} = require('rollup-plugin-terser'); // 代码压缩
 // const alias = require('rollup-plugin-alias');
-// const jsx = require("acorn-jsx");
+// const jsx = require('acorn-jsx');
 const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve'); // !这样主要实现页面的热更新
 
@@ -57,7 +57,7 @@ export default {
     }),
     babel({
       exclude: 'node_modules/**'
-      // babelHelpers: "runtime",
+      // babelHelpers: 'runtime'
     }),
     vuePlugin({
       css: true,
@@ -78,9 +78,10 @@ export default {
     nodeResolve({ mainFields: ['module', 'main', 'browser'] }),
     commonjs({ sourceMap: true })
     // serve({
-    //   contentBase: '',  //服务器启动的文件夹，默认是项目根目录，需要在该文件下创建index.html
-    //   port: 8020   //端口号，默认10001
+    //   contentBase: '', // 服务器启动的文件夹，默认是项目根目录，需要在该文件下创建index.html
+    //   port: 8020 // 端口号，默认10001
     // }),
-    // livereload('dist')   //watch dist目录，当目录中的文件发生变化时，刷新页面
+    // livereload('dist') // watch dist目录，当目录中的文件发生变化时，刷新页面
   ]
+  // acornInjectPlugins: [jsx()]
 };
