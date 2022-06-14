@@ -1,6 +1,7 @@
 import serve from 'rollup-plugin-serve'; // !这样主要实现页面的热更新
 import livereload from 'rollup-plugin-livereload';
-const { babel } = require('@rollup/plugin-babel'); // es6解析
+const path = require('path');
+const { babel, getBabelOutputPlugin } = require('@rollup/plugin-babel'); // es6解析
 // const json = require("@rollup/plugin-json"); // json解析
 const vuePlugin = require('rollup-plugin-vue'); // vue 解析
 const typescript = require('rollup-plugin-typescript2'); // ts打包
@@ -56,10 +57,11 @@ export default {
       useTsconfigDeclarationDir: true
     }),
     // !多了extensions和babelHelpers: 'runtime'，可以把tsx文件进行转换es5的，但造成多了很多代码，可以直接被html执行
+    // !tsx语法不管，因为一般vue-cli项目，引入组件库，配了babel.config.js则可解决vue jsx问题
     babel({
-      exclude: 'node_modules/**',
-      extensions,
-      babelHelpers: 'runtime'
+      exclude: 'node_modules/**'
+      // extensions,
+      // babelHelpers: 'runtime'
     }),
     vuePlugin({
       css: true,
