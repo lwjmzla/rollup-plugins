@@ -9,7 +9,7 @@ const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer'); // 浏览器前缀
 // const {terser} = require('rollup-plugin-terser'); // 代码压缩
 // const alias = require('rollup-plugin-alias');
-// const jsx = require('acorn-jsx');
+const jsx = require('acorn-jsx');
 const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve'); // !这样主要实现页面的热更新
 
@@ -22,7 +22,7 @@ const globals = {
   vue: 'Vue' // !意思是import {defineComponent,ref} from 'vue'的vue模块是从外部提供的Vue(挂载在window上的变量)获取
 };
 // !rollup的external+globals  才等于  webpack的externals: { vue : 'Vue'}
-
+const extensions = ['.ts', '.js', '.tsx'];
 export default {
   input: './src/packages/index.ts',
   external,
@@ -55,9 +55,11 @@ export default {
       tsconfig: 'tsconfig.json',
       useTsconfigDeclarationDir: true
     }),
+    // !多了extensions和babelHelpers: 'runtime'，可以把tsx文件进行转换es5的，但造成多了很多代码，可以直接被html执行
     babel({
-      exclude: 'node_modules/**'
-      // babelHelpers: 'runtime'
+      exclude: 'node_modules/**',
+      extensions,
+      babelHelpers: 'runtime'
     }),
     vuePlugin({
       css: true,
@@ -76,12 +78,13 @@ export default {
     //   'vue': require.resolve('vue/dist/vue.esm-bundler.js')
     // }),
     nodeResolve({ mainFields: ['module', 'main', 'browser'] }),
-    commonjs({ sourceMap: true })
-    // serve({
-    //   contentBase: '', // 服务器启动的文件夹，默认是项目根目录，需要在该文件下创建index.html
-    //   port: 8020 // 端口号，默认10001
-    // }),
-    // livereload('dist') // watch dist目录，当目录中的文件发生变化时，刷新页面
-  ]
-  // acornInjectPlugins: [jsx()]
+    commonjs({ sourceMap: true }),
+    serve({
+      contentBase: '', // 服务器启动的文件夹，默认是项目根目录，需要在该文件下创建index.html
+      port: 8020 // 端口号，默认10001
+    }),
+    livereload('dist') // watch dist目录，当目录中的文件发生变化时，刷新页面
+  ],
+  // !jsx插件是让acornjs解析器能认识jsx语法，经过rollup打包后展示的还是jsx语法，而还需要babel修改jsx结构成为普通js语法。
+  acornInjectPlugins: [jsx()]
 };

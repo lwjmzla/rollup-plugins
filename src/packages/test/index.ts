@@ -1,8 +1,9 @@
-import { App } from 'vue'
+import { App } from 'vue';
 // @ts-ignore
-import Test from './index.vue'
-function install(app: App) {
-  app.component(Test.name, Test)
+import Test from './test.tsx';
+import './index.scss';
+function install (app: App) {
+  app.component(Test.name, Test);
 }
 
-export default install
+export default install;

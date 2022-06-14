@@ -85,6 +85,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^8.0.3",
-    "vue-eslint-parser": "^9.0.2"
+    "vue-eslint-parser": "^9.0.2",
+    "@vue/babel-plugin-jsx": "^1.1.1"
   }
 }

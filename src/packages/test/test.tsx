@@ -1,23 +1,12 @@
 
-<script lang="tsx">
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'test',
   setup () {
     const msg = ref('test');
     // return () => h('div', [msg.value]);
-    // !vue文件的jsx方式，没有被babel做转换奇怪，但.tsx文件就会被转换了。配置：rollup.config.js  babel extensions
     return () => (
       <div>{msg.value}</div>
     );
   }
 });
-</script>
-
-<style lang="scss">
-body{
-  color: red;
-  display: flex;
-}
-
-</style>
