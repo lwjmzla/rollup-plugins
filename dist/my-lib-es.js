@@ -25,7 +25,7 @@ var script$1 = defineComponent({
             provinceList: [],
             cityList: [],
             areaList: [],
-            totalData: [],
+            totalData: []
         });
         return Object.assign(Object.assign({}, toRefs(state)), { msg });
     }
@@ -77,13 +77,13 @@ function install$2(app) {
 }
 
 var script = defineComponent({
-  name: 'test',
-  setup() {
-    const msg =ref('test');
-    return {
-      msg
+    name: 'test',
+    setup() {
+        const msg = ref('test');
+        return {
+            msg
+        };
     }
-  }
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {

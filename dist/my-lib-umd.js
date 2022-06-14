@@ -29,7 +29,7 @@
               provinceList: [],
               cityList: [],
               areaList: [],
-              totalData: [],
+              totalData: []
           });
           return Object.assign(Object.assign({}, vue.toRefs(state)), { msg });
       }
@@ -81,13 +81,13 @@
   }
 
   var script = vue.defineComponent({
-    name: 'test',
-    setup() {
-      const msg =vue.ref('test');
-      return {
-        msg
+      name: 'test',
+      setup() {
+          const msg = vue.ref('test');
+          return {
+              msg
+          };
       }
-    }
   });
 
   function render(_ctx, _cache, $props, $setup, $data, $options) {

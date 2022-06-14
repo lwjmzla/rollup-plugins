@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent,ref,reactive,toRefs} from 'vue'
+import { defineComponent, ref, reactive, toRefs } from 'vue';
 
 interface WithName {
   name: string;
@@ -25,8 +25,8 @@ export default defineComponent({
       default: ''
     }
   },
-  setup(props) {
-    const msg =ref('hello')
+  setup (props) {
+    const msg = ref('hello');
     const state = reactive({
       provinceVal: props.province,
       cityVal: props.city,
@@ -34,14 +34,14 @@ export default defineComponent({
       provinceList: [] as WithName[],
       cityList: [] as WithName[],
       areaList: [] as WithName[],
-      totalData: [] as string[],
-    })
+      totalData: [] as string[]
+    });
     return {
       ...toRefs(state),
       msg
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss">
