@@ -6,7 +6,6 @@ export default defineComponent({
   setup () {
     const msg = ref('test');
     // return () => h('div', [msg.value]);
-    // !vue文件的jsx方式，没有被babel做转换奇怪，但.tsx文件就会被转换了。配置：rollup.config.js  babel extensions
     return () => (
       <div>{msg.value}</div>
     );

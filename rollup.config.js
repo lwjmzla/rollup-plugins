@@ -63,6 +63,17 @@ export default {
       // extensions,
       // babelHelpers: 'runtime'
     }),
+    // !配了这个，jsx被解析了，但是umd文件不能直接html饮用。
+    getBabelOutputPlugin({
+      exclude: 'node_modules/**',
+      presets: [
+        '@babel/preset-env'
+      ],
+      plugins: [
+        '@vue/babel-plugin-jsx'
+      ],
+      allowAllFormats: true
+    }),
     vuePlugin({
       css: true,
       target: 'browser',
