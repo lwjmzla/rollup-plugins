@@ -12,7 +12,7 @@ const autoprefixer = require('autoprefixer'); // 浏览器前缀
 // const alias = require('rollup-plugin-alias');
 const jsx = require('acorn-jsx');
 const commonjs = require('@rollup/plugin-commonjs');
-const { nodeResolve } = require('@rollup/plugin-node-resolve'); // !这样主要实现页面的热更新
+const { nodeResolve } = require('@rollup/plugin-node-resolve'); // !使用了nodeResolve插件，就能访问'./answer/index.js'，其实就是写文件名称不规范问题。
 
 const external = [
   // 外部库， 使用'umd'文件时需要先引入这个外部库
@@ -34,6 +34,12 @@ export default {
       name: 'myLib',
       globals
     },
+    // {
+    //   file: './dist/my-lib-iife.js',
+    //   format: 'iife',
+    //   name: 'myLib',
+    //   globals
+    // },
     {
       file: './dist/my-lib-es.js',
       format: 'es'
